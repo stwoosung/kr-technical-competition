@@ -65,14 +65,20 @@ public class Login extends Frame {
 				showMessage("빈칸이 존재합니다.", "메시지", JOptionPane.ERROR_MESSAGE);
 				return;
 			} else if (jtt[0].getText().equals("admin") && jtt[1].getText().equals("1234")) {
-				// new Admin();
+				new Admin();
 				dispose();
 			} else {
 				try {
 					ResultSet rs = DB.getResultSet("SELECT * FROM user WHERE u_id = '" + jtt[0].getText()
 							+ "' AND u_pw = '" + jtt[1].getText() + "';");
 					if (rs.next()) {
-						
+						CV.u_no = rs.getString(1);
+						CV.u_id = rs.getString(2);
+						CV.u_name = rs.getString(4);
+						CV.u_grade = rs.getString(7);
+						CV.u_point = rs.getInt(6);
+
+						new Home();
 					} else {
 						showMessage("회원정보가 틀립니다.다시 입력해주세요.", "메시지", JOptionPane.ERROR_MESSAGE);
 						return;
