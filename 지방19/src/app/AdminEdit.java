@@ -111,7 +111,7 @@ public class AdminEdit extends Frame {
 			
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				if (table.getRowCount() == 0) return;
+				if (table.getRowCount() == 0 || table.getSelectedRow() == -1) return;
 				jt[0].setText(dtm.getValueAt(table.getSelectedRow(), 2).toString());
 				jt[1].setText(dtm.getValueAt(table.getSelectedRow(), 3).toString());
 				img.setIcon(new ImageIcon(new ImageIcon("./DataFiles/이미지/" + dtm.getValueAt(table.getSelectedRow(), 2).toString() + ".jpg").getImage().getScaledInstance(130, 140, Image.SCALE_FAST)));
@@ -140,6 +140,7 @@ public class AdminEdit extends Frame {
 			ResultSet rs = DB.getResultSet("SELECT * FROM menu WHERE" + (jcom.getSelectedIndex() == 0 ? "" : " m_group = '" + jcom.getSelectedItem() + "' AND") + " m_name LIKE '%" + st.getText() + "%';");
 			while(rs.next()) dtm.addRow(new String[] { rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4) });
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			showMessage(ex.getMessage(), "오류", JOptionPane.ERROR_MESSAGE);
 		}
 	}

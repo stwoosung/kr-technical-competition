@@ -32,7 +32,7 @@ public class OrderList extends Frame {
 			ResultSet rs = DB.getResultSet("SELECT * FROM orderlist o LEFT JOIN menu m ON o.m_no = m.m_no WHERE o.u_no = " + CV.u_no);
 			cp.add(jsp = new JScrollPane(table = new JTable(dtm = new DefaultTableModel(null, new String[] { "구매일자", "메뉴명", "가격", "사이즈", "수량", "총금액" }))));
 			while (rs.next()) {
-				dtm.addRow(new String[] { rs.getString(2), rs.getString(12), rs.getString(7), rs.getString(6), rs.getString(8), rs.getString(9) });
+				dtm.addRow(new String[] { rs.getString(2), rs.getString(12), new DecimalFormat("###,###").format(rs.getInt(7)), rs.getString(6), rs.getString(8), new DecimalFormat("###,###").format(rs.getInt(9)) });
 				c += rs.getInt(9);
 			}
 		} catch (Exception e) {

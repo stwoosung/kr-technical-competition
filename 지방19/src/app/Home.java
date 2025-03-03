@@ -73,6 +73,9 @@ public class Home extends Frame {
 		jt[1].setEditable(false);
 		jt[2].setEditable(false);
 		
+		jc1.addActionListener(this);
+		jc2.addActionListener(this);
+		
 		addWindowListener(this);
 		showFrame();
 		
@@ -156,6 +159,8 @@ public class Home extends Frame {
 		jp3.setBorder(BorderFactory.createEmptyBorder(0, 0, 100, 0));
 		jp2.setBorder(BorderFactory.createEmptyBorder(100, 0, 0, 10));
 		
+		jc1.setSelectedIndex(0);
+		
 		this.revalidate();
 		this.pack();
 	}
@@ -202,6 +207,10 @@ public class Home extends Frame {
 			}
 		} else if (e.getSource().equals(jbbb[1])) {
 			System.out.println("asdasd");
+		} else if (e.getSource().equals(jc1) || e.getSource().equals(jc2)) {
+			jt[2].setText(
+					Integer.toString((Integer.parseInt(jt[1].getText()) + (jc2.getSelectedIndex() == 0 ? 0 : 1000))
+							* (jc1.getSelectedIndex() + 1)));
 		}
 	}
 	

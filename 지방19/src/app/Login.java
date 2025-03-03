@@ -77,7 +77,7 @@ public class Login extends Frame {
 						CV.u_name = rs.getString(4);
 						CV.u_grade = rs.getString(7);
 						CV.u_point = rs.getInt(6);
-
+						dispose();
 						new Home();
 					} else {
 						showMessage("회원정보가 틀립니다.다시 입력해주세요.", "메시지", JOptionPane.ERROR_MESSAGE);
